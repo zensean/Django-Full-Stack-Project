@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Currency Rates</title>
+</head>
+<body>
+    <h1>Currency Rates</h1>
+    <a href="{% url 'rate_create' %}">Add New Rate</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Source Currency</th>
+                <th>Target Currency</th>
+                <th>Rate</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rate in rates %}
+            <tr>
+                <td>{{ rate.source_currency }}</td>
+                <td>{{ rate.target_currency }}</td>
+                <td>{{ rate.rate }}</td>
+                <td>
+                    <a href="{% url 'rate_update' rate.pk %}">Edit</a>
+                    <a href="{% url 'rate_delete' rate.pk %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
